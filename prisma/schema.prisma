@@ -33,7 +33,7 @@ model hotel {
   hotel_image   String   @default("hotel-694bfd2d-0672-4953-893e-a4ebd192ae53.png")
   roomTypes     RoomType[]
   averageRating  Int    @default(0)
-  Review Review[]
+  Review  Review[]
   @@map("Hotels")
 }
 
@@ -67,12 +67,13 @@ model Reservation {
 
 model Review {
   id       Int  @id @default(autoincrement())
-  author   user  @relation(fields: [authorId], references: [id])
   authorId Int
-  hotel    hotel   @relation(fields: [hotelId], references: [id])
+  author   user  @relation(fields: [authorId], references: [id])
   hotelId  Int
-  text       String
+  hotel    hotel   @relation(fields: [hotelId], references: [id])
   rating     Int
+  text       String
+  
 }
 
 
