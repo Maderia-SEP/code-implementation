@@ -18,7 +18,7 @@ model user {
   password_hash String
   image         String @default("default-b92a3903-16e4-49ce-be9d-53ff8c0fd24e.png")
   reservations  Reservation[]
-  Review Review[]
+  Review review[]
   @@map("Users")
 }
 
@@ -33,7 +33,7 @@ model hotel {
   hotel_image   String   @default("hotel-694bfd2d-0672-4953-893e-a4ebd192ae53.png")
   roomTypes     RoomType[]
   averageRating  Int    @default(0)
-  Review  Review[]
+  Review  review[]
   @@map("Hotels")
 }
 
@@ -65,7 +65,7 @@ model Reservation {
 }
 
 
-model Review {
+model review {
   id       Int  @id @default(autoincrement())
   authorId Int
   author   user  @relation(fields: [authorId], references: [id])
