@@ -8,6 +8,14 @@ export class ReviewService {
     constructor(private prisma:PrismaService){}
 
     async createReview(dto: reviewDto, userId: number) {
+        let hotel = await this.prisma.hotel.findUnique({
+            where:{
+                id:dto.hotelId
+            }
+        })
+        if (!hotel){
+            throw  new NotFoundException(`Hotel  with ID ${dto.hotelId} not found.`);  
+        }
         let newReview = await this.prisma.review.create({
             data: {
                 authorId: userId,
@@ -16,7 +24,10 @@ export class ReviewService {
                 text:dto.text
             }
         });
-        return newReview
+        return {
+            success:true,
+            data:newReview
+        }
     }
 
     async getAllReviews(){
