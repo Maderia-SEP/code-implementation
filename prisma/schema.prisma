@@ -76,5 +76,7 @@ model review {
   hotel    hotel   @relation(fields: [hotelId], references: [id])
   rating     Int
   text       String
+  createdAt DateTime @default(now())
+   @@unique([authorId, hotelId])
 }
 

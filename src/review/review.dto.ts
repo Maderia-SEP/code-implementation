@@ -17,3 +17,5 @@ export class updateReviewDto{
     @IsNotEmpty()
     hotelId:number
 }
+
+
