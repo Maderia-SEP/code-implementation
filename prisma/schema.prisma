@@ -77,5 +77,6 @@ model review {
   rating     Int
   text       String
   createdAt DateTime @default(now())
+   @@unique([authorId, hotelId])
 }
 
