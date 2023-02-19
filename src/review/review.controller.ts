@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Put, Req, UseGuards } from '@nestjs/common';
 import { JwtGuard } from 'src/auth/jwt.guard';
 import { reviewDto, updateReviewDto } from './review.dto';
 import { ReviewService } from './review.service';
@@ -50,6 +50,11 @@ export class ReviewController {
     @Get('average/:id')
     async getAverageRating(@Param('id', new ParseIntPipe()) hotelId:number){
         return await this.reviewService.getAverageRating(hotelId)
+    }
+
+    @Put('a')
+    async getAllHotels(){
+        return await this.reviewService.getAllHotels()
     }
 
 

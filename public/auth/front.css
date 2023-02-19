@@ -1,0 +1,106 @@
+/* Hero image */
+.hero-image {
+    background-image: url("https://source.unsplash.com/1600x900/?hotel");
+    background-color: #000;
+    height: 50vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+  
+  .hero-text {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+  }
+  
+  /* Hotel cards */
+  .card {
+    border: none;
+    margin: 20px;
+  }
+  
+  .card .card-img-top {
+    object-fit: cover;
+    height: 200px;
+  }
+  
+  .card-title {
+    font-size: 24px;
+    font-weight: 500;
+  }
+  
+  .card-text {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  
+  .rating {
+    color:red
+  }
+
+  /* Star rating */
+.stars {
+    display: inline-block;
+    font-size: 18px;
+    color: #ffd700;
+    }
+    
+    .stars i {
+    margin-right: 5px;
+    }
+    
+    .half {
+    position: relative;
+    }
+    
+    .half::before {
+    content: "\f089";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    color: #777;
+    }
+    
+    /* change color of the stars according to rating data */
+    .stars-0,
+    .stars-1,
+    .stars-2,
+    .stars-3,
+    .stars-4,
+    .stars-5 {
+    color: #b3b3b3;
+    }
+    
+    .stars-1 i:nth-child(-n + 1),
+    .stars-2 i:nth-child(-n + 2),
+    .stars-3 i:nth-child(-n + 3),
+    .stars-4 i:nth-child(-n + 4),
+    .stars-5 i:nth-child(-n + 5) {
+    color: #ffd700;
+    }
+    
+    .stars-0.half,
+    .stars-1.half,
+    .stars-2.half,
+    .stars-3.half,
+    .stars-4.half,
+    .stars-5.half {
+    color: #ffd700;
+    }
+    
+    .stars-0.half::before,
+    .stars-1.half::before,
+    .stars-2.half::before,
+    .stars-3.half::before,
+    .stars-4.half::before,
+    .stars-5.half::before {
+    color: #b3b3b3;
+    }
+    

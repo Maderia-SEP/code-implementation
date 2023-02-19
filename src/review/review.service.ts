@@ -35,9 +35,7 @@ export class ReviewService {
               }
               return { success: false, message: error.message };
             }
-}
-        
-
+}  
     async getAllReviews(){
         let AllReviews = await this.prisma.review.findMany();
         return {
@@ -125,6 +123,10 @@ export class ReviewService {
       });
       return averageRating;
     }
+  }
+
+  async getAllHotels(){
+    return this.prisma.hotel.findMany()
   }
 }
 
