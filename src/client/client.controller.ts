@@ -3,7 +3,7 @@ import { JwtGuard } from '../auth/jwt.guard';
 import { Request } from 'express';
 import { user } from '@prisma/client';
 import { ClientService } from './client.service';
-import { RoomTypeDto, UpdateNoOfRoomsDto, SingleIdDto } from './dto.client';
+import { RoomTypeDto, UpdateNoOfRoomsDto, SingleIdDto, ReservationDto, UpdateReservationDto } from './dto.client';
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('client')
@@ -105,8 +105,39 @@ export class ClientController {
   }
 
   @UseGuards(JwtGuard)
-  @Post('hotelRoomData')
+  @Get('hotelRoomData')
   async hotelRoomData(@Body() data: SingleIdDto) {
     return await this.clientService.getRoomDataForHotel(data.id)
+  }
+
+  @UseGuards(JwtGuard)
+  @Post("reservation")
+  async createReservation(@Req() req:Request, @Body() data: ReservationDto){
+    return await this.clientService.createReservation(req.user, data);
+  }
+
+  @UseGuards(JwtGuard)
+  @Delete('myReservations')
+  async deleteReservation(@Req() req: Request, @Body() data: SingleIdDto){
+    return await this.clientService.deleteUserReservation(req.user, data);
+  }
+
+  // let users see the reservations they made
+  @UseGuards(JwtGuard)
+  @Get('myReservations')
+  async getUserReservations(@Req() req: Request) {
+    return await this.clientService.getUserReservations(req.user);
+  }
+
+  @UseGuards(JwtGuard)
+  @Get('reservationManagement')
+  async getHotelReservationsAndOccupancies(@Req() req: Request) {
+    return await this.clientService.getHotelReservationsAndOccupancies(req.user);
+  }
+
+  @UseGuards(JwtGuard)
+  @Patch('reservation')
+  async promoteReservationToOccupancy(@Req() req: Request, @Body() data: UpdateReservationDto) {
+    return await this.clientService.promoteReservationToOccupancy(req.user, data);
   }
 }
